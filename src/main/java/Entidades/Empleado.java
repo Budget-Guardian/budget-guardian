@@ -1,66 +1,122 @@
 package Entidades;
-import javax.persistence.*;
-@Entity;
-public class Empleado {
-    private  string correo;
-    private  string Empresa;
-    private  string rol;
-    //@OneToMany(mappedBy = "Empleado");
-    //private list <>
 
-    public Empleado(string correo, string empresa, string rol, string nombreEmpleado) {
-        this.correo = correo;
-        Empresa = empresa;
-        this.rol = rol;
-        this.nombreEmpleado = nombreEmpleado;
-    }
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
+
+@Entity
+public class Empleado {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String correo;
+    private String nombre;
+    private String rol;
+    private String image;
+    private String phone;
+    private Date createdAt;
+    private Date updatedAt;
+
+    @OneToMany(mappedBy ="empleado")
+    private List<Movimiento> movimientos;
+
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
 
     public Empleado(){
-        this.correo = "correo por defecto";
-        Empresa = "empresa por defecto";
-        this.rol = "rol por defecto";
-        this.nombreEmpleado = "nombreEmpleado por defecto";
-
     }
 
-    @GeneratedValue(strategy =generationType.Auto)
-    private  string nombreEmpleado;
-
-    public string getNombreEmpleado() {
-        return nombreEmpleado;
+    public Empleado(Long id, String correo, String nombre, String rol, String image, String phone, Date createdAt, Date updatedAt, List<Movimiento> movimientos, Empresa empresa) {
+        this.id = id;
+        this.correo = correo;
+        this.nombre = nombre;
+        this.rol = rol;
+        this.image = image;
+        this.phone = phone;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.movimientos = movimientos;
+        this.empresa = empresa;
     }
 
-    public void setNombreEmpleado(string nombreEmpleado) {
-        this.nombreEmpleado = nombreEmpleado;
+    public Long getId() {
+        return id;
     }
 
-    public string getCorreo() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCorreo() {
         return correo;
     }
 
-    public void setCorreo(string correo) {
+    public void setCorreo(String correo) {
         this.correo = correo;
     }
 
-    public string getEmpresa() {
-        return Empresa;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setEmpresa(string empresa) {
-        Empresa = empresa;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public string getRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(string rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 
+    public String getImage() {
+        return image;
+    }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
 
+    public String getPhone() {
+        return phone;
+    }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
 
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public List<Movimiento> getMovimientos() {
+        return movimientos;
+    }
+
+    public void setMovimientos(List<Movimiento> movimientos) {
+        this.movimientos = movimientos;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
 }

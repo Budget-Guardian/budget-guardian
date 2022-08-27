@@ -21,13 +21,13 @@ public class Movimiento {
     private Float amount;
     private Date createdAt;
     private Date updatedAt;
-    /* @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "empleado_id")
     private Empleado empleado;
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
-    */
+
 
     // MÉTODOS
     // Constructor
@@ -87,5 +87,21 @@ public class Movimiento {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 }
