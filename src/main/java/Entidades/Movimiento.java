@@ -21,13 +21,13 @@ public class Movimiento {
     private Float amount;
     private Date createdAt;
     private Date updatedAt;
-    /* @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "empleado_id")
     private Empleado empleado;
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
-    */
+
 
     // MÉTODOS
     // Constructor

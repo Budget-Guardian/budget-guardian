@@ -1,9 +1,9 @@
 package Entidades;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-
 public class Empresa {
 
     @Id
@@ -14,12 +14,10 @@ public class Empresa {
     private String telefono;
     private String nit;
 
-    /*
     @OneToMany(mappedBy = "empresa")
-    private List<Empleado> empleadoList;
+    private List<Empleado> empleados;
     @OneToMany(mappedBy = "empresa")
-    private List<Movimiento> movimientoList;
-     */
+    private List<Movimiento> movimientos;
 
     public Empresa(Long id, String nombreEmpresa, String direccion, String telefono, String nit) {
         this.id = id;
