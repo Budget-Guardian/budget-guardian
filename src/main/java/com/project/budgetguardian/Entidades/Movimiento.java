@@ -1,17 +1,13 @@
-package Entidades;
+package com.project.budgetguardian.Entidades;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Movimiento
  */
-@Entity
+/*@Entity
+@Table(name="Mavimento")
 public class Movimiento {
     // ATRIBUTOS
     @Id
@@ -104,4 +100,4 @@ public class Movimiento {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
-}
+}*/

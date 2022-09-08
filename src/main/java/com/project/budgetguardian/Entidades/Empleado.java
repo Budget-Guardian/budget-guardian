@@ -1,33 +1,41 @@
-package Entidades;
+package com.project.budgetguardian.Entidades;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name="Empleado")
 public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name="correo")
     private String correo;
+    @Column(name="nombre")
     private String nombre;
+    @Column(name="rol")
     private String rol;
+    @Column(name="image")
     private String image;
+    @Column(name="phone")
     private String phone;
+    @Column(name="createdAt")
     private Date createdAt;
+    @Column(name="updatedAt")
     private Date updatedAt;
 
-    @OneToMany(mappedBy ="empleado")
+    /*@OneToMany(mappedBy ="empleado")
     private List<Movimiento> movimientos;
 
     @ManyToOne
     @JoinColumn(name = "empresa_id")
-    private Empresa empresa;
+    private Empresa empresa;*/
 
     public Empleado(){
     }
 
-    public Empleado(Long id, String correo, String nombre, String rol, String image, String phone, Date createdAt, Date updatedAt, List<Movimiento> movimientos, Empresa empresa) {
+    public Empleado(Long id, String correo, String nombre, String rol, String image, String phone, Date createdAt, Date updatedAt/*, List<Movimiento> movimientos, Empresa empresa*/) {
         this.id = id;
         this.correo = correo;
         this.nombre = nombre;
@@ -36,8 +44,8 @@ public class Empleado {
         this.phone = phone;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.movimientos = movimientos;
-        this.empresa = empresa;
+        /*this.movimientos = movimientos;
+        this.empresa = empresa;*/
     }
 
     public Long getId() {
@@ -103,7 +111,7 @@ public class Empleado {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
+/*
     public List<Movimiento> getMovimientos() {
         return movimientos;
     }
@@ -118,5 +126,5 @@ public class Empleado {
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
-    }
+    }*/
 }

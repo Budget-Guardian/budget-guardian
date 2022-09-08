@@ -1,9 +1,10 @@
-package Entidades;
+package com.project.budgetguardian.Entidades;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+/*@Entity
+@Table(name="Empresa")
 public class Empresa {
 
     @Id
@@ -76,3 +77,4 @@ public class Empresa {
     }
 
 }
+*/
