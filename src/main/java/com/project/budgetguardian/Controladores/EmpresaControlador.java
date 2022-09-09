@@ -20,12 +20,12 @@ public class EmpresaControlador {
 
     @PatchMapping("/enterprises/{idEnt}/movements/{IdMov}")
     public String ActualizarMovimientosEmpresa(){
-        return "Patch Actualización de movimiento de empresa";
+        return "PATCH Actualización de movimiento de empresa";
     }
 
     @DeleteMapping("/enterprises/{idEnt}/movements/{IdMov}")
     public String EliminarMovimientosEmpresa(){
-        return "Patch Eliminación de movimiento de empresa";
+        return "DELETE Eliminación de movimiento de empresa";
     }
 
 
