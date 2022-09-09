@@ -17,8 +17,8 @@ public class UsuariosControlador {
     }
 
     @GetMapping("/user/{id}")
-    public String ListaUsuarioPorID(){
-        return "GET lista de usuario por ID";
+    public String DetalleUsuarioPorID(){
+        return "GET detalle de usuario por ID";
     }
 
     @PatchMapping("/user/{id}")
