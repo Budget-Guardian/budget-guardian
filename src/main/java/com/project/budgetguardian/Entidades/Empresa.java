@@ -3,21 +3,25 @@ package com.project.budgetguardian.Entidades;
 import javax.persistence.*;
 import java.util.List;
 
-/*@Entity
+@Entity
 @Table(name="Empresa")
 public class Empresa {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+    @Column
     private String nombreEmpresa;
+    @Column
     private String direccion;
+    @Column
     private String telefono;
+    @Column
     private String nit;
 
-    @OneToMany(mappedBy = "empresa")
+    @OneToMany(mappedBy = "empresa",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Empleado> empleados;
-    @OneToMany(mappedBy = "empresa")
+    @OneToMany(mappedBy = "empresa",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Movimiento> movimientos;
 
     public Empresa(Long id, String nombreEmpresa, String direccion, String telefono, String nit) {
@@ -77,4 +81,3 @@ public class Empresa {
     }
 
 }
-*/

@@ -10,32 +10,32 @@ public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="correo")
+    @Column
     private String correo;
-    @Column(name="nombre")
+    @Column
     private String nombre;
-    @Column(name="rol")
+    @Column
     private String rol;
-    @Column(name="image")
+    @Column
     private String image;
-    @Column(name="phone")
+    @Column
     private String phone;
-    @Column(name="createdAt")
+    @Column
     private Date createdAt;
-    @Column(name="updatedAt")
+    @Column
     private Date updatedAt;
 
-    /*@OneToMany(mappedBy ="empleado")
+    @OneToMany(mappedBy ="empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Movimiento> movimientos;
 
-    @ManyToOne
-    @JoinColumn(name = "empresa_id")
-    private Empresa empresa;*/
+    @ManyToOne(fetch= FetchType.LAZY, optional = false)
+    @JoinColumn(name = "empresa_id", nullable = false)
+    private Empresa empresa;
 
     public Empleado(){
     }
 
-    public Empleado(Long id, String correo, String nombre, String rol, String image, String phone, Date createdAt, Date updatedAt/*, List<Movimiento> movimientos, Empresa empresa*/) {
+    public Empleado(Long id, String correo, String nombre, String rol, String image, String phone, Date createdAt, Date updatedAt, List<Movimiento> movimientos, Empresa empresa) {
         this.id = id;
         this.correo = correo;
         this.nombre = nombre;
@@ -44,8 +44,8 @@ public class Empleado {
         this.phone = phone;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        /*this.movimientos = movimientos;
-        this.empresa = empresa;*/
+        this.movimientos = movimientos;
+        this.empresa = empresa;
     }
 
     public Long getId() {
@@ -111,7 +111,7 @@ public class Empleado {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-/*
+
     public List<Movimiento> getMovimientos() {
         return movimientos;
     }
@@ -126,5 +126,5 @@ public class Empleado {
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
-    }*/
+    }
 }

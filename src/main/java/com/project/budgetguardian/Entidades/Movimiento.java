@@ -6,22 +6,26 @@ import javax.persistence.*;
 /**
  * Movimiento
  */
-/*@Entity
-@Table(name="Mavimento")
+@Entity
+@Table(name="Movimento")
 public class Movimiento {
     // ATRIBUTOS
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column
     private String concept;
+    @Column
     private Float amount;
+    @Column
     private Date createdAt;
+    @Column
     private Date updatedAt;
     @ManyToOne
     @JoinColumn(name = "empleado_id")
     private Empleado empleado;
-    @ManyToOne
-    @JoinColumn(name = "empresa_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "empresa_id", nullable = false)
     private Empresa empresa;
 
 
@@ -100,4 +104,4 @@ public class Movimiento {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
-}*/
+}
