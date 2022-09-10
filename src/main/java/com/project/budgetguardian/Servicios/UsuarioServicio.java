@@ -14,7 +14,28 @@ public class UsuarioServicio {
         this.repositorio = repositorio;
     }
 
-    public List<Empleado> getUsuarios() {
+    // El sistema permite consultar todos los usuarios
+    public List<Empleado> getUsers() {
         return this.repositorio.findAll();
+    }
+
+    // El sistema permite consultar un solo usuario
+    public Empleado getUserByID(Long id){
+        return this.repositorio.findById(id).get();
+    }
+
+    // El sistema permite crear un usuario
+    public Empleado createUser(Empleado newUser){
+        return this.repositorio.save(newUser);
+    }
+
+    // El sistema permite editar un usuario
+    public void updateUserByID(Empleado user){
+        this.repositorio.save(user);
+    }
+
+    // El sistema permite eliminar un usuario
+    public void deleteUserByID(Long id){
+        this.repositorio.deleteById(id);
     }
 }
