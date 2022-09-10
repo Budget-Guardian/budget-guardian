@@ -1,14 +1,24 @@
 package com.project.budgetguardian.Controladores;
 
+import com.project.budgetguardian.Entidades.Empleado;
+import com.project.budgetguardian.Repositorios.UsuariosRepositorio;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @ResponseStatus(HttpStatus.OK)
 public class UsuariosControlador {
+    private final UsuariosRepositorio servicio;
+
+    public UsuariosControlador(UsuariosRepositorio servicio) {
+        this.servicio = servicio;
+    }
+
     @GetMapping("/users")
-    public String ListaUsuarios(){
-        return "GET lista de usuarios";
+    public List<Empleado> ListaUsuarios() {
+        return servicio.findAll();
     }
 
     @PostMapping("/users")
