@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @ResponseStatus(HttpStatus.OK)
-public class EmpresaControlador {
+public class MovimientosControlador {
 
     @GetMapping("/enterprises/{idEnt}/movements")
     public String ListaMovimientosEmpresa(){
@@ -27,7 +27,4 @@ public class EmpresaControlador {
     public String EliminarMovimientosEmpresa(){
         return "DELETE Eliminación de movimiento de empresa";
     }
-
-
-
 }
