@@ -14,12 +14,12 @@
         <header>
             <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
                 <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-                    <img class="d-block mx-auto" srcset="https://img.icons8.com/bubbles/344/security-configuration.png 2x" alt="" width="60" >
+                    <img class="d-block mx-auto" srcset="https://img.icons8.com/bubbles/344/security-configuration.png 2x" width="60" >
                     <span class="fs-4">Budget Guardian</span>
                 </a>
 
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                    <a class="py-2 text-dark text-decoration-none" href="/index"><img srcset="https://img.icons8.com/bubbles/344/test-account.png 2x" alt="" width="50" ></a>
+                    <a class="py-2 text-dark text-decoration-none" href="index.html"><img srcset="https://img.icons8.com/bubbles/344/test-account.png 2x" alt="" width="50" ></a>
                 </nav>
             </div>
         </header>
@@ -49,7 +49,6 @@
                         </ul>
                     </div>
                 </nav>
-
                 <div class="col-md-8 ms-sm-auto col-lg-9 px-md-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">Empresas</h1>
@@ -67,75 +66,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>random</td>
-                                <td>data</td>
-                                <td>placeholder</td>
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>placeholder</td>
-                                <td>irrelevant</td>
-                                <td>visual</td>
-                                <td>layout</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>data</td>
-                                <td>rich</td>
-                                <td>dashboard</td>
-                                <td>tabular</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>information</td>
-                                <td>placeholder</td>
-                                <td>illustrative</td>
-                                <td>data</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>text</td>
-                                <td>random</td>
-                                <td>layout</td>
-                                <td>dashboard</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>dashboard</td>
-                                <td>irrelevant</td>
-                                <td>text</td>
-                                <td>placeholder</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>dashboard</td>
-                                <td>illustrative</td>
-                                <td>rich</td>
-                                <td>data</td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>placeholder</td>
-                                <td>tabular</td>
-                                <td>information</td>
-                                <td>irrelevant</td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>random</td>
-                                <td>data</td>
-                                <td>placeholder</td>
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>placeholder</td>
-                                <td>irrelevant</td>
-                                <td>visual</td>
-                                <td>layout</td>
+                            <tr th:each="company : ${empresas}">
+                                <td th:text="${company.id}"></td>
+                                <td th:text="${company.nombreEmpresa}></td>
+                                <td th:text="${company.direccion}></td>
+                                <td th:text="${company.telefono}></td>
+                                <td th:text="${company.nit}></td>
                             </tr>
                             </tbody>
                         </table>
