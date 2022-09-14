@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Empresas</title>
+    <title>Ingresos y egresos</title>
 </head>
 <body>
 <main>
@@ -51,9 +51,9 @@
                 </nav>
                 <div class="col-md-8 ms-sm-auto col-lg-9 px-md-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Empresas</h1>
+                        <h1 class="h2">Ingresos y egresos</h1>
                         <div class="btn-toolbar mb-2 mb-md-0">
-                            <a href="new_enterprise.html" type="button" class="btn btn-sm btn-outline-secondary">Nuevo</a>
+                            <a href="new_movement.html" type="button" class="btn btn-sm btn-outline-secondary">Nuevo</a>
                         </div>
                     </div>
 
@@ -61,18 +61,18 @@
                         <table class="table table-striped table-sm">
                             <thead>
                             <tr>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Dirección</th>
-                                <th scope="col">Teléfono</th>
-                                <th scope="col">NIT</th>
+                                <th scope="col">Concepto</th>
+                                <th scope="col">Monto</th>
+                                <th scope="col">Fecha de creación</th>
+                                <th scope="col">Fecha de actualización</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="company : ${empresas}">
-                                <td th:text="${company.nombreEmpresa}></td>
-                                <td th:text="${company.direccion}></td>
-                                <td th:text="${company.telefono}></td>
-                                <td th:text="${company.nit}></td>
+                            <tr th:each="movement : ${movimientos}">
+                                <td th:text="${movements.concept}></td>
+                                <td th:text="${movements.amount}></td>
+                                <td th:text="${movements.createdAt}></td>
+                                <td th:text="${movements.updatedAt}></td>
                             </tr>
                             </tbody>
                         </table>

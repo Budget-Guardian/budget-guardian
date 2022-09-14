@@ -14,10 +14,10 @@ public class EmpresaControlador {
     public EmpresaControlador(EmpresaServicio servicio){
         this.servicio = servicio;
     }
-    @GetMapping("/enterprises")
-    public List<Empresa> ListaEmpresas(){
-        return this.servicio.getEmpresas();
-    }
+//    @GetMapping("/enterprises")
+//    public List<Empresa> ListaEmpresas(){
+//        return this.servicio.getEmpresas();
+//    }
 
     @PostMapping("/enterprises")
     public Empresa CrearEmpresa(@RequestBody Empresa empresa){

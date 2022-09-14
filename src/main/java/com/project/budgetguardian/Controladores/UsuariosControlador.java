@@ -17,10 +17,10 @@ public class UsuariosControlador {
     }
 
     // El sistema permite consultar todos los usuarios
-    @GetMapping("/users")
-    public List<Empleado> ListaUsuarios() {
-        return this.servicio.getUsers();
-    }
+//    @GetMapping("/users")
+//    public List<Empleado> ListaUsuarios() {
+//        return this.servicio.getUsers();
+//    }
 
     // El sistema permite consultar un solo usuario
     @GetMapping("/user/{id}")
