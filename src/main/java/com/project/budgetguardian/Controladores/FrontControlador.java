@@ -9,4 +9,9 @@ public class FrontControlador {
     public String index(){
         return "index";
     }
+
+    @GetMapping("/enterprises")
+    public String enterprises(){
+        return "enterprises";
+    }
 }
