@@ -61,6 +61,7 @@
                         <table class="table table-striped table-sm">
                             <thead>
                             <tr>
+                                <th scope="col">Acciones</th>
                                 <th scope="col">Concepto</th>
                                 <th scope="col">Monto</th>
                                 <th scope="col">Usuario</th>
@@ -70,6 +71,11 @@
                             </thead>
                             <tbody>
                             <tr th:each="movimientos : ${movimientos}">
+                                <td>
+                                    <a class="nav-link" href="edit_movement">
+                                        <img class="mb-2" srcset="https://img.icons8.com/dusk/344/edit--v1.png 2x" alt="" width="25" >
+                                    </a>
+                                </td>
                                 <td th:text="${movimientos.concept}"></td>
                                 <td th:text="${movimientos.amount}"></td>
                                 <td th:text="${movimientos.empleado}"></td>
