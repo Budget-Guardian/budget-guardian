@@ -63,19 +63,25 @@
                             <tr>
                                 <th scope="col">Concepto</th>
                                 <th scope="col">Monto</th>
-                                <th scope="col">Fecha de creación</th>
-                                <th scope="col">Fecha de actualización</th>
+                                <th scope="col">Usuario</th>
+                                <th scope="col">Fecha creación</th>
+                                <th scope="col">Fecha actualización</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="movimientos : ${movimientos}">
                                 <td th:text="${movimientos.concept}"></td>
                                 <td th:text="${movimientos.amount}"></td>
+                                <td th:text="${movimientos.empleado}"></td>
                                 <td th:text="${movimientos.createdAt}"></td>
                                 <td th:text="${movimientos.updatedAt}"></td>
                             </tr>
                             </tbody>
                         </table>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">$</span>
+                            <span type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        </div>
                     </div>
                 </div>
             </div>
