@@ -1,16 +1,19 @@
 package com.project.budgetguardian.Controladores;
 
+import com.project.budgetguardian.Entidades.ApiResponse;
 import com.project.budgetguardian.Entidades.Empleado;
 import com.project.budgetguardian.Servicios.UsuarioServicio;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@RestController
-@ResponseStatus(HttpStatus.OK)
+@Controller
 public class UsuariosControlador {
-    UsuarioServicio servicio;
+    @Autowired
+    private final UsuarioServicio servicio;
+
 
     public UsuariosControlador(UsuarioServicio servicio) {
         this.servicio = servicio;
@@ -18,34 +21,77 @@ public class UsuariosControlador {
 
     // El sistema permite consultar todos los usuarios
     @GetMapping("/users")
-    public List<Empleado> ListaUsuarios() {
-        return this.servicio.getUsers();
+    public ResponseEntity<ApiResponse> ListaUsuarios() {
+        try {
+            return new ResponseEntity<>(
+                    new ApiResponse("Lista de usuarios", this.servicio.getUsers()),
+                    HttpStatus.OK
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse(e.getMessage(), null),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
     }
 
     // El sistema permite consultar un solo usuario
     @GetMapping("/user/{id}")
-    public Empleado DetalleUsuarioPorID(@PathVariable("id") Long id) {
-        return this.servicio.getUserByID(id);
+    public ResponseEntity<ApiResponse> DetalleUsuarioPorID(@PathVariable("id") Long id) {
+        try {
+            Empleado empleado = this.servicio.getUserByID(id);
+            return new ResponseEntity<>(new ApiResponse("Listar usuario", empleado),
+                    HttpStatus.OK
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse(e.getMessage(), null),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
     }
 
     // El sistema permite crear un usuario
-    @PostMapping("/users")
-    public Empleado CrearUsuario(@RequestBody Empleado user) {
-        return this.servicio.createUser(user);
+    @PostMapping(path = "/users")
+    public ResponseEntity<ApiResponse> CrearUsuario(@RequestBody Empleado user) {
+        try {
+            Empleado empleado = this.servicio.createUser(user);
+            return new ResponseEntity<>(new ApiResponse("Usuario creado", empleado),
+                    HttpStatus.OK
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse(e.getMessage(), null),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
     }
 
     // El sistema permite editar un usuario
     @PatchMapping("/user/{id}")
-    public String ActualizarUsuarioPorID(@PathVariable("id") Long id, @RequestBody Empleado user) {
+    public ResponseEntity<ApiResponse> ActualizarUsuarioPorID(@PathVariable("id") Long id, @RequestBody Empleado user) {
         user.setId(id);
-        this.servicio.updateUserByID(user);
-        return "Usuario actualizado";
+        try {
+            Empleado empleado = this.servicio.updateUserByID(user);
+            return new ResponseEntity<>(new ApiResponse("Usuario actualizado", empleado),
+                    HttpStatus.OK
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse(e.getMessage(), null),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
     }
 
     // El sistema permite eliminar un usuario
     @DeleteMapping("/user/{id}")
-    public String EliminarUsuarioPorID(@PathVariable("id") Long id) {
-        this.servicio.deleteUserByID(id);
-        return "Usuario eliminado";
+    public ResponseEntity<ApiResponse> EliminarUsuarioPorID(@PathVariable("id") Long id) {
+        try {
+            Empleado empleado = this.servicio.deleteUserByID(id);
+            return new ResponseEntity<>(new ApiResponse("Empleado eliminado", empleado),
+                    HttpStatus.OK
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse(e.getMessage(), null),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
     }
 }
