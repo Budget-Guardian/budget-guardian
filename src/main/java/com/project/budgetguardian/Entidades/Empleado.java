@@ -1,5 +1,8 @@
 package com.project.budgetguardian.Entidades;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -25,15 +28,15 @@ public class Empleado {
     @Column
     private Date updatedAt;
 
-    @OneToMany(mappedBy ="empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy ="empleado")
     private List<Movimiento> movimientos;
 
-    @ManyToOne(fetch= FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "empresa_id", nullable = false)
     private Empresa empresa;
 
-    public Empleado(){
-    }
+    public Empleado(){}
 
     public Empleado(Long id, String correo, String nombre, String rol, String image, String phone, Date createdAt, Date updatedAt, List<Movimiento> movimientos, Empresa empresa) {
         this.id = id;

@@ -21,10 +21,12 @@ public class Movimiento {
     private Date createdAt;
     @Column
     private Date updatedAt;
+
     @ManyToOne
     @JoinColumn(name = "empleado_id")
     private Empleado empleado;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+
+    @ManyToOne
     @JoinColumn(name = "empresa_id", nullable = false)
     private Empresa empresa;
 
