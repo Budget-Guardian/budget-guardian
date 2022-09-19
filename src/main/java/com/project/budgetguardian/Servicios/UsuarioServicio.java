@@ -36,8 +36,8 @@ public class UsuarioServicio {
     }
 
     // El sistema permite crear un usuario
-    public Empleado createUser(Empleado newUser) {
-        Empresa empresaDB = empresaServicio.getEmpresa(newUser.getEmpresa().getId());
+    public Empleado createUser(Empleado newUser) throws Exception {
+        Empresa empresaDB = empresaServicio.getEnterpriseByID(newUser.getEmpresa().getId());
         newUser.setEmpresa(empresaDB);
         return this.repositorio.save(newUser);
     }
@@ -68,7 +68,7 @@ public class UsuarioServicio {
                 userDB.setUpdatedAt(user.getUpdatedAt());
             }
             if (user.getEmpresa() != null) {
-                Empresa empresaDB = empresaServicio.getEmpresa(user.getEmpresa().getId());
+                Empresa empresaDB = empresaServicio.getEnterpriseByID(user.getEmpresa().getId());
                 userDB.setEmpresa(empresaDB);
             }
             return createUser(userDB);
