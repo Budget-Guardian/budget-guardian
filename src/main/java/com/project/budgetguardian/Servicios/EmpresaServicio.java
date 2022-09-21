@@ -1,36 +1,71 @@
 package com.project.budgetguardian.Servicios;
 
+import com.project.budgetguardian.Entidades.Empleado;
 import com.project.budgetguardian.Entidades.Empresa;
 import com.project.budgetguardian.Repositorios.EmpresaRepositorio;
+import com.project.budgetguardian.Repositorios.UsuariosRepositorio;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmpresaServicio {
-    private EmpresaRepositorio repositorio;
+
+    @Autowired
+    private final EmpresaRepositorio repositorio;
 
     public EmpresaServicio(EmpresaRepositorio repositorio){
         this.repositorio = repositorio;
     }
 
-    public List<Empresa> getEmpresas(){
+    // El sistema permite consultar todas las empresas
+    public List<Empresa> getEnterprises(){
         return this.repositorio.findAll();
     }
 
-    public Empresa getEmpresa(Long id){
-        return this.repositorio.findById(id).get();
+    // El sistema permite consultar una sola empresa
+    public Empresa getEnterpriseByID(Long id) throws Exception {
+        Optional<Empresa> empresaOptional = this.repositorio.findById(id);
+        if (empresaOptional.isPresent()) {
+            return empresaOptional.get();
+        } else {
+            throw new Exception("Empresa No Existe");
+        }
     }
 
-    public Empresa createEmpresa(Empresa nuevaEmpresa){
-        return this.repositorio.save(nuevaEmpresa);
+    // El sistema permite crear una empresa
+    public Empresa createEnterprise(Empresa newEnterprise) {
+        return this.repositorio.save(newEnterprise);
     }
 
-    public void updateEmpresa(Empresa empresa){
-        this.repositorio.save(empresa);
+    // El sistema permite editar una empresa
+    public Empresa updateEnterpriseByID(Empresa enterprise) throws Exception {
+        try {
+            Empresa enterpriseDB = getEnterpriseByID(enterprise.getId());
+            if (enterprise.getNombreEmpresa() != null) {
+                enterprise.setNombreEmpresa(enterprise.getNombreEmpresa());
+            }
+            if (enterprise.getDireccion() != null) {
+                enterprise.setDireccion(enterprise.getDireccion());
+            }
+            if (enterprise.getTelefono() != null) {
+                enterprise.setTelefono(enterprise.getTelefono());
+            }
+            if (enterprise.getNit() != null) {
+                enterprise.setNit(enterprise.getNit());
+            }
+            return createEnterprise(enterpriseDB);
+        } catch (Exception e) {
+            throw new Exception("Empresa no se actualizo, error en repositorio");
+        }
     }
 
-    public void deleteEmpresa(Long id){
+    // El sistema permite eliminar una empresa
+    public Empresa deleteEnterpriseByID(Long id) throws Exception {
+        Empresa enterprise = getEnterpriseByID(id);
         this.repositorio.deleteById(id);
+        return enterprise;
     }
 }
