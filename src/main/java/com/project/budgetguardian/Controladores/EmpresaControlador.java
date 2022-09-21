@@ -1,44 +1,96 @@
 package com.project.budgetguardian.Controladores;
 
+import com.project.budgetguardian.Entidades.ApiResponse;
+import com.project.budgetguardian.Entidades.Empleado;
 import com.project.budgetguardian.Entidades.Empresa;
 import com.project.budgetguardian.Servicios.EmpresaServicio;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@RestController
-@ResponseStatus(HttpStatus.OK)
+@Controller
 public class EmpresaControlador {
-    EmpresaServicio servicio;
+    @Autowired
+    private EmpresaServicio servicio;
+
     public EmpresaControlador(EmpresaServicio servicio){
         this.servicio = servicio;
     }
-    @GetMapping("/api/enterprises")
-    public List<Empresa> ListaEmpresas(){
-        return this.servicio.getEmpresas();
+    // El sistema permite consultar todos las empresas
+    @GetMapping("/enterprises")
+    public ResponseEntity<ApiResponse> ListaEmpresas() {
+        try {
+            return new ResponseEntity<>(
+                    new ApiResponse("Lista de empresas", this.servicio.getEnterprises()),
+                    HttpStatus.OK
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse(e.getMessage(), null),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
     }
 
-    @PostMapping("/api/enterprises")
-    public Empresa CrearEmpresa(@RequestBody Empresa empresa){
-        return this.servicio.createEmpresa(empresa);
+    // El sistema permite consultar una sola empresa
+    @GetMapping("/enterprise/{id}")
+    public ResponseEntity<ApiResponse> DetalleEmpresaPorID(@PathVariable("id") Long id) {
+        try {
+            Empresa empresa = this.servicio.getEnterpriseByID(id);
+            return new ResponseEntity<>(new ApiResponse("Listar empresa", empresa),
+                    HttpStatus.OK
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse(e.getMessage(), null),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
     }
 
-    @GetMapping("/api/enterprises/{id}")
-    public Empresa DetalleEmpresa(@PathVariable("id") Long id){
-        return this.servicio.getEmpresa(id);
+    // El sistema permite crear una empresa
+    @PostMapping(path = "/enterprises")
+    public ResponseEntity<ApiResponse> CrearEmpresa(@RequestBody Empresa enterprise) {
+        try {
+            Empresa empresa = this.servicio.createEnterprise(enterprise);
+            return new ResponseEntity<>(new ApiResponse("Empresa creada", enterprise),
+                    HttpStatus.OK
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse(e.getMessage(), null),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
     }
 
-    @PatchMapping("/api/enterprises/{id}")
-    public String ActualizarEmpresa(@PathVariable("id") Long id, @RequestBody Empresa empresa){
-        empresa.setId(id);
-        this.servicio.updateEmpresa(empresa);
-        return "Empresa actualizada";
+    // El sistema permite editar una empresa
+    @PatchMapping("/enterprise/{id}")
+    public ResponseEntity<ApiResponse> ActualizarEmpresaPorID(@PathVariable("id") Long id, @RequestBody Empresa enterprise) {
+        enterprise.setId(id);
+        try {
+            Empresa empresa = this.servicio.updateEnterpriseByID(enterprise);
+            return new ResponseEntity<>(new ApiResponse("Empresa actualizada", empresa),
+                    HttpStatus.OK
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse(e.getMessage(), null),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
     }
 
-    @DeleteMapping("/api/enterprises/{id}")
-    public String EliminarEmpresa(@PathVariable("id") Long id){
-        this.servicio.deleteEmpresa(id);
-        return "Empresa Eliminada";
+    // El sistema permite eliminar una empresa
+    @DeleteMapping("/enterprise/{id}")
+    public ResponseEntity<ApiResponse> EliminarEmpresaPorID(@PathVariable("id") Long id) {
+        try {
+            Empresa empresa = this.servicio.deleteEnterpriseByID(id);
+            return new ResponseEntity<>(new ApiResponse("Empleado eliminado", empresa),
+                    HttpStatus.OK
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse(e.getMessage(), null),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
     }
 }

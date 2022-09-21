@@ -1,5 +1,7 @@
 package com.project.budgetguardian.Entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,9 +21,12 @@ public class Empresa {
     @Column
     private String nit;
 
-    @OneToMany(mappedBy = "empresa",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "empresa")
     private List<Empleado> empleados;
-    @OneToMany(mappedBy = "empresa",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "empresa")
     private List<Movimiento> movimientos;
 
     public Empresa(Long id, String nombreEmpresa, String direccion, String telefono, String nit) {
