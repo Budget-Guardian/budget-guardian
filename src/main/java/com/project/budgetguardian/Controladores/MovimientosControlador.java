@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.*;
 @ResponseStatus(HttpStatus.OK)
 public class MovimientosControlador {
 
-    @GetMapping("/enterprises/{idEnt}/movements")
-    public String ListaMovimientosEmpresa(){
-        return "GET lista de movimientos de empresa";
-    }
+//    @GetMapping("/enterprises/{idEnt}/movements")
+//    public String ListaMovimientosEmpresa(){
+//        return "GET lista de movimientos de empresa";
+//    }
 
     @PostMapping("/enterprises/{idEnt}/movements")
     public String CrearMovimientosEmpresa(){
