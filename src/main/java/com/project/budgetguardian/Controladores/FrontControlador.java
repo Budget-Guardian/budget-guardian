@@ -2,7 +2,9 @@ package com.project.budgetguardian.Controladores;
 
 import com.project.budgetguardian.Entidades.Empleado;
 import com.project.budgetguardian.Entidades.Empresa;
+import com.project.budgetguardian.Entidades.Movimiento;
 import com.project.budgetguardian.Servicios.EmpresaServicio;
+import com.project.budgetguardian.Servicios.MovimientoServicio;
 import com.project.budgetguardian.Servicios.UsuarioServicio;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +17,7 @@ public class FrontControlador {
 
     EmpresaServicio serviceCompany;
     UsuarioServicio serviceUser;
-//    MovimientosServicio serviceMovements;
+    MovimientoServicio serviceMovements;
 
     public FrontControlador(EmpresaServicio serviceCompany,
                             UsuarioServicio serviceUser
@@ -33,7 +35,7 @@ public class FrontControlador {
 
     @GetMapping("/enterprises")
     public String enterprises(Model model){
-        List<Empresa> empresas = this.serviceCompany.getEmpresas();
+        List<Empresa> empresas = this.serviceCompany.getEnterprises();
         model.addAttribute("empresas", empresas);
         return "enterprises";
     }
@@ -45,10 +47,10 @@ public class FrontControlador {
         return "users";
     }
 
-//    @GetMapping("/enterprises/{idEnt}/movements")
-//    public String movements(Model model){
-//        List<Empresa> movimientos = this.serviceMovements.getMovements();
-//        model.addAttribute("movimientos", movimientos);
-//        return "movements";
-//    }
+    @GetMapping("/income_expenses")
+    public String movements(Model model){
+        List<Movimiento> movimientos = this.serviceMovements.getMovements();
+        model.addAttribute("movimientos", movimientos);
+        return "income_expenses";
+    }
 }

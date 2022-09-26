@@ -20,7 +20,7 @@ public class UsuariosControlador {
     }
 
     // El sistema permite consultar todos los usuarios
-    @GetMapping("/users")
+    @GetMapping("api/users")
     public ResponseEntity<ApiResponse> ListaUsuarios() {
         try {
             return new ResponseEntity<>(
@@ -50,7 +50,7 @@ public class UsuariosControlador {
     }
 
     // El sistema permite crear un usuario
-    @PostMapping(path = "/users")
+    @PostMapping(path = "api/users")
     public ResponseEntity<ApiResponse> CrearUsuario(@RequestBody Empleado user) {
         try {
             Empleado empleado = this.servicio.createUser(user);

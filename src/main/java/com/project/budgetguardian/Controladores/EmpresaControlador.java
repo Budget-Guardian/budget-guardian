@@ -19,7 +19,7 @@ public class EmpresaControlador {
         this.servicio = servicio;
     }
     // El sistema permite consultar todos las empresas
-    @GetMapping("/enterprises")
+    @GetMapping("api/enterprises")
     public ResponseEntity<ApiResponse> ListaEmpresas() {
         try {
             return new ResponseEntity<>(
